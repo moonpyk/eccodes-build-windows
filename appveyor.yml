@@ -1,0 +1,30 @@
+#---------------------------------#
+#      general configuration      #
+#---------------------------------#
+
+version: 2.13.1-{build}
+
+branches:
+  only:
+    - master
+
+image: Visual Studio 2017
+
+environment:
+  CONDA: c:\Miniconda37-x64
+  ECMWF: c:\ecmwf
+  SOURCE_TAR: https://confluence.ecmwf.int/download/attachments/45757960/eccodes-2.13.1-Source.tar.gz?api=v2
+
+# scripts that are called at very beginning, before repo cloning
+init:
+  - cmd: git config --global core.symlinks true
+  - cmd: call %CONDA%\Scripts\activate.bat
+  - cmd: conda config --set always_yes yes
+
+clone_depth: 1
+
+# scripts that run after cloning repository
+install:
+  - cmd: curl -o sources.tar.gz %SOURCE_TAR%
+  - cmd: 7z x -tgzip -so sources.tar.gz | 7z x -si -ttar
+  - cmd: dir
