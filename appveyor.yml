@@ -3,7 +3,7 @@
 #      general configuration      #
 #---------------------------------#
 
-version: 2.13.1
+version: 2.13.1-{build}
 
 branches:
   only:
@@ -82,4 +82,4 @@ after_test:
   
 artifacts:
   - path: Binaries.zip
-    name: EcCodes-$(version)-win-$(platform).zip
+    name: EcCodes-{build}-win-{platform}.zip
