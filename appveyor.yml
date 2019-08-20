@@ -1,3 +1,4 @@
+---
 #---------------------------------#
 #      general configuration      #
 #---------------------------------#
@@ -31,17 +32,15 @@ install:
   - cmd: 7z x -tgzip -so sources.tar.gz | 7z x -si -ttar
     # install linux utils from msys
   - cmd: conda install -c msys2 m2-bash ^
-                                m2-findutils ^
-                                m2-coreutils ^
-                                m2-grep ^
-                                m2-sed ^
-                                m2-gawk ^
-                                m2-diffutils ^
-                                m2-perl
-
+      m2-findutils ^
+      m2-coreutils ^
+      m2-grep ^
+      m2-sed ^
+      m2-gawk ^
+      m2-diffutils ^
+      m2-perl
     # get the latest version of cmake
   - cmd: conda install -c conda-forge cmake
-
     # other deps
   - cmd: conda install libnetcdf libpng openjpeg
 
@@ -55,19 +54,23 @@ build_script:
   - cmd: cd %SOURCE_DIRECTORY%
   - cmd: mkdir BUILD && cd BUILD
   - cmd: cmake -G "NMake Makefiles" ^
-               -D CMAKE_INSTALL_PREFIX=%INSTALL_DIR% ^
-               -D CMAKE_BUILD_TYPE=Release ^
-               -D ENABLE_FORTRAN=0 ^
-               -D ENABLE_PYTHON=0 ^
-               -D ENABLE_NETCDF=0 ^
-               -D ENABLE_PNG=1 ^
-               -D ENABLE_JPG=1 ^
-               -D OPENJPEG_INCLUDE_DIR=%CONDA%\Library\include\openjpeg-2.3
-               -D IEEE_LE=1 ^
-               -D ENABLE_MEMFS=0 ^
-               -D ENABLE_EXTRA_TESTS=OFF ^
-               ..
+      -D CMAKE_INSTALL_PREFIX=%INSTALL_DIR% ^
+      -D CMAKE_BUILD_TYPE=Release ^
+      -D ENABLE_FORTRAN=0 ^
+      -D ENABLE_PYTHON=0 ^
+      -D ENABLE_NETCDF=0 ^
+      -D ENABLE_PNG=1 ^
+      -D ENABLE_JPG=1 ^
+      -D OPENJPEG_INCLUDE_DIR=%CONDA%\Library\include\openjpeg-2.3
+      -D IEEE_LE=1 ^
+      -D ENABLE_MEMFS=0 ^
+      -D ENABLE_EXTRA_TESTS=OFF ^
+      ..
+
   - cmd: nmake install
-  - cmd: cd %INSTALL_DIR% && dir
-  - cmd: bin\codes_check.exe
-  
+  - cmd: cp "%CONDA%\Library\bin\openjp2.dll" "%INSTALL_DIR%\bin\"
+  - cmd: cp "%CONDA%\Library\bin\libpng16.dll" "%INSTALL_DIR%\bin\"
+  - cmd: cp "%CONDA%\Library\bin\zlib.dll" "%INSTALL_DIR%\bin\"
+
+test_script:
+  - cmd: call "%INSTALL_DIR%\bin\codes_info.exe"
