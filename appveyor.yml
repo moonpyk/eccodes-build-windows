@@ -3,7 +3,7 @@
 #      general configuration      #
 #---------------------------------#
 
-version: 2.13.1-{build}
+version: 2.13.1
 
 branches:
   only:
@@ -75,3 +75,11 @@ build_script:
 
 test_script:
   - cmd: call "%INSTALL_DIR%\bin\codes_info.exe"
+
+after_test:
+  - cmd: cd c:\
+  - cmd: 7z a "C:\EcCodes-win-x64.zip" "%INSTALL_DIR%"
+  
+artifacts:
+  - path: C:\EcCodes-win-x64.zip
+    name: Binaries
