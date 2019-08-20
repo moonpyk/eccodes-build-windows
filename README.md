@@ -26,6 +26,8 @@ If you decide to unzip it anywhere else you will have to create 2 additional env
   * `ECCODES_DEFINITION_PATH`, pointing to `<UNZIPPED_PATH>\ECMWF\share\eccodes\definitions`
   * `ECCODES_SAMPLES_PATH`, pointing to `<UNZIPPED_PATH>\ECMWF\share\eccodes\samples`
 
+Python 3 + eccodes-python package _should_ work without any problem if `eccodes.dll` can be found in your `PATH`.
+
 So that the library and command line tools can find needed assets to operate.
 
 ## Possible evolutions
