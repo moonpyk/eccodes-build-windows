@@ -11,7 +11,7 @@ The stuff resides inside the [releases page](https://github.com/moonpyk/eccodes-
 The build system compiles EcCodes with the following features enabled :
 
   * JPEG Support (via openjpeg)
-  * PNG (via libpng)
+  * PNG Support (via libpng)
 
 Those features should make tools/lib able to read all grib packings supported by EcCodes (tested with NOAA GFS, Méteo-France AROME/ARPEGE, DWD ICON, ECMWF WMO Essentials forecasts).
 
