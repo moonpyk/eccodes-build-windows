@@ -78,8 +78,8 @@ test_script:
 
 after_test:
   - cmd: cd c:\
-  - cmd: 7z a "C:\EcCodes-win-x64.zip" "%INSTALL_DIR%"
+  - cmd: 7z a "%APPVEYOR_BUILD_FOLDER%\Binaries.zip" "%INSTALL_DIR%"
   
 artifacts:
-  - path: C:\EcCodes-win-x64.zip
-    name: Binaries
+  - path: Binaries.zip
+    name: EcCodes-$(version)-win-$(platform).zip
