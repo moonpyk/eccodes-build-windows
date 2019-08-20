@@ -69,6 +69,3 @@ build_script:
                ..
   - cmd: nmake install
   - cmd: cd %INSTALL_DIR% && dir
-
-tests:
-  - cmd: exit 0
