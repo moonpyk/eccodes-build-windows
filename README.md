@@ -1,8 +1,7 @@
 # eccodes-build-windows
 Automated ECMWF EcCodes library and tools builds for Windows
 
-This repository is almost empty and consists mostly of an appveyor build file.
-
+This repository is almost empty and consists mostly of an appveyor build file. 
 The original source code resides there : [https://github.com/ecmwf/eccodes](https://github.com/ecmwf/eccodes) (Apache 2 License)
 
 The stuff resides inside the [releases page](https://github.com/moonpyk/eccodes-build-windows/releases) where compiled binaries are available.
@@ -26,9 +25,9 @@ If you decide to unzip it anywhere else you will have to create 2 additional env
   * `ECCODES_DEFINITION_PATH`, pointing to `<UNZIPPED_PATH>\ECMWF\share\eccodes\definitions`
   * `ECCODES_SAMPLES_PATH`, pointing to `<UNZIPPED_PATH>\ECMWF\share\eccodes\samples`
 
-Python 3 + eccodes-python package _should_ work without any problem if `eccodes.dll` can be found in your `PATH`.
-
 So that the library and command line tools can find needed assets to operate.
+
+Python 3 + eccodes-python package _should_ work without any problem if `eccodes.dll` can be found in your `PATH`.
 
 ## Possible evolutions
 
