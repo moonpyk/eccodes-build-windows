@@ -42,7 +42,7 @@ install:
     # get the latest version of cmake
   - cmd: conda install -c conda-forge cmake
     # other deps
-  - cmd: conda install libnetcdf libpng openjpeg
+  - cmd: conda install libpng openjpeg
 
 before_build:
   - cmd: call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x64
