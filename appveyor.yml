@@ -12,7 +12,7 @@ image: Visual Studio 2017
 
 environment:
   CONDA: c:\Miniconda37-x64
-  ECMWF: c:\ecmwf
+  INSTALL_DIR: c:\ECMWF
 
   SOURCE_DIRECTORY: eccodes-2.13.1-Source
   SOURCE_TAR: https://confluence.ecmwf.int/download/attachments/45757960/eccodes-2.13.1-Source.tar.gz?api=v2
@@ -69,3 +69,5 @@ build_script:
                ..
   - cmd: nmake install
   - cmd: cd %INSTALL_DIR% && dir
+  - cmd: bin\codes_check.exe
+  
