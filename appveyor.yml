@@ -44,9 +44,6 @@ install:
     # other deps
   - cmd: conda install libnetcdf libpng openjpeg
 
-platform:
-  - x64
-
 before_build:
   - cmd: call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x64
 
@@ -63,6 +60,7 @@ build_script:
       -D ENABLE_JPG=1 ^
       -D OPENJPEG_INCLUDE_DIR=%CONDA%\Library\include\openjpeg-2.3
       -D IEEE_LE=1 ^
+      -D ENABLE_EXAMPLES=0 ^
       -D ENABLE_MEMFS=0 ^
       -D ENABLE_TESTS=0 ^
       -D ENABLE_EXTRA_TESTS=OFF ^
@@ -78,8 +76,8 @@ test_script:
 
 after_test:
   - cmd: cd c:\
-  - cmd: 7z a "%APPVEYOR_BUILD_FOLDER%\Binaries.zip" "%INSTALL_DIR%"
+  - cmd: 7z a "%APPVEYOR_BUILD_FOLDER%\EcCodes-win-x64.zip" "%INSTALL_DIR%"
   
 artifacts:
-  - path: Binaries.zip
-    name: EcCodes-{build}-win-{platform}.zip
+  - path: EcCodes-win-x64.zip
+    
