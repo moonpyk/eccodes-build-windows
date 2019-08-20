@@ -45,10 +45,6 @@ install:
     # other deps
   - cmd: conda install libnetcdf libpng openjpeg
 
-#---------------------------------#
-#       build configuration       #
-#---------------------------------#
-
 platform:
   - x64
 
@@ -58,7 +54,6 @@ before_build:
 build_script:
   - cmd: cd %SOURCE_DIRECTORY%
   - cmd: mkdir BUILD && cd BUILD
-  - cmd: exit 1
   - cmd: cmake -G "NMake Makefiles" ^
                -D CMAKE_INSTALL_PREFIX=%INSTALL_DIR% ^
                -D CMAKE_BUILD_TYPE=Release ^
@@ -74,3 +69,6 @@ build_script:
                ..
   - cmd: nmake install
   - cmd: cd %INSTALL_DIR% && dir
+
+tests:
+  - cmd: exit 0
