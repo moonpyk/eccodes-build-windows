@@ -13,6 +13,8 @@ image: Visual Studio 2017
 environment:
   CONDA: c:\Miniconda37-x64
   ECMWF: c:\ecmwf
+
+  SOURCE_DIRECTORY: eccodes-2.13.1-Source
   SOURCE_TAR: https://confluence.ecmwf.int/download/attachments/45757960/eccodes-2.13.1-Source.tar.gz?api=v2
 
 # scripts that are called at very beginning, before repo cloning
@@ -27,4 +29,52 @@ clone_depth: 1
 install:
   - cmd: curl -o sources.tar.gz %SOURCE_TAR%
   - cmd: 7z x -tgzip -so sources.tar.gz | 7z x -si -ttar
-  - cmd: dir
+
+
+#    # install linux utils
+#  - cmd: conda install -c msys2 m2-bash ^
+#                                m2-findutils ^
+#                                m2-coreutils ^
+#                                m2-grep ^
+#                                m2-sed ^
+#                                m2-gawk ^
+#                                m2-diffutils ^
+#                                m2-perl
+#
+#    # get the latest version of cmake
+#  - cmd: conda install -c conda-forge cmake
+#
+#    # other deps
+#  - cmd: conda install libnetcdf libpng openjpeg
+
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+
+platform:
+  - x64
+
+before_build:
+  - cmd: call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build>vcvarsall.bat" x64
+
+build_script:
+  - cmd: cd %SOURCE_DIRECTORY%
+  - cmd: dir 
+  - cmd: mkdir BUILD
+  - cmd: exit 1
+
+#  - cmd: mkdir build && cd build
+#  - cmd: cmake -G "NMake Makefiles" ^
+#               -D CMAKE_INSTALL_PREFIX=%INSTALL_DIR% ^
+#               -D CMAKE_BUILD_TYPE=Release ^
+#               -D ENABLE_FORTRAN=0 ^
+#               -D ENABLE_PYTHON=0 ^
+#               -D ENABLE_NETCDF=0 ^
+#               -D ENABLE_PNG=1 ^
+#               -D ENABLE_JPG=1 ^
+#               -D OPENJPEG_INCLUDE_DIR=%CONDA%\Library\include\openjpeg-2.3
+#               -D IEEE_LE=1 ^
+#               -D ENABLE_MEMFS=0 ^
+#               -D ENABLE_EXTRA_TESTS=OFF ^
+#               ..
+#  - cmd: nmake install
